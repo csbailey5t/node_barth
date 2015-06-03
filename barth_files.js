@@ -2,9 +2,11 @@ var request = require('request'),
       cheerio = require('cheerio'),
       fs = require('fs'),
       tm = require('text-miner');
+require('dotenv').load();
 
-var url = "http://solomon.dkbl.alexanderstreet.com/cgi-bin/asp/philo/dkbl/volumes_toc.pl?&church=ON";
-var baseUrl = "http://solomon.dkbl.alexanderstreet.com";
+
+var url = process.env.URL;
+var baseUrl = process.env.BASEURL;
 
 request(url, function(err, response, body) {
 
