@@ -2,10 +2,11 @@
 
 var request = require('request'),
       cheerio = require('cheerio');
+require('dotenv').load();
 
 var corpus = {};
 
-var url = "http://solomon.dkbl.alexanderstreet.com/cgi-bin/asp/philo/dkbl/getobject.pl?c.830:1.barth";
+var url = process.env.SINGLEPAGE;
 
 request(url, function (error, response, body) {
 
