@@ -50,16 +50,25 @@ request(url, function(err, response, body) {
                 }
             });
 
-            console.log(viewTextLinks);
-
             for (i = 0, len = viewTextLinks.length; i < len; ++i){
-                // console.log(viewTextLinks[i]);
+                // Now we need to go over each paragraph, get the ext, and write it to a file
+                request(viewTextLinks[i], function(err, response, body){
+                    $ = cheerio.load(body);
+
+                    var pageText = $('body').text();
+                    var head = $('body').find('.head');
+                    var title = head.text();
+                    var dirname = 'paragraphs/';
+                    var filename = dirname + title.toLowerCase().replace(/ /g, '_') + '.txt';
+                    fs.writeFile(filename, pageText, function(err, data){
+                        if (err) {
+                            return console.log(err);
+                        }
+                        console.log(data);
+                    });
+                });
             }
         });
     }
 
 });
-
-
-
-
