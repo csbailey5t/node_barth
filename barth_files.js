@@ -31,6 +31,8 @@ request(url, function(err, response, body) {
         }
     });
 
+    var volumeLinks = volumeLinks.slice(0, -2);
+
     // Loop over the volume links array and do stuff
     for (i = 0, len = volumeLinks.length; i < len; ++i){
         // console.log(volumeLinks[i]);
