@@ -10,12 +10,13 @@ require('dotenv').load();
 var url = process.env.URL;
 var baseUrl = process.env.BASEURL;
 
-// console.log("url is :" + url);
-// console.log("baseurl is: " + baseUrl);
-
-
 // Get the table of contents page with request
 request(url, function(err, response, body) {
+
+    // Handle errors
+    if (err) {
+        console.log("Coudn't get page because of error:" + err);
+    }
 
     // Load the page into cheerio
     $ = cheerio.load(body);
@@ -35,12 +36,15 @@ request(url, function(err, response, body) {
 
     // Loop over the volume links array and do stuff
     for (i = 0, len = volumeLinks.length; i < len; ++i){
-        // console.log(volumeLinks[i]);
-
-        // Within each volume, we then need to get all View Text links, build an array and loop
 
         // Load the volume page into cheerio - this is single volume level
         request(volumeLinks[i], function(err, response, body){
+
+            // Handle errors
+            if (err) {
+                console.log("Coudn't get page because of error:" + err);
+            }
+
             $ = cheerio.load(body);
 
             var paragraphLinks = $('a');
@@ -55,6 +59,12 @@ request(url, function(err, response, body) {
             for (i = 0, len = viewTextLinks.length; i < len; ++i){
                 // Now we need to go over each paragraph, get the ext, and write it to a file
                 request(viewTextLinks[i], function(err, response, body){
+
+                    // Handle errors
+                    if (err) {
+                        console.log("Coudn't get page because of error:" + err);
+                    }
+
                     $ = cheerio.load(body);
 
                     var pageText = $('body').text();
