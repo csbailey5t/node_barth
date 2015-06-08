@@ -1,7 +1,6 @@
 var request = require('request'),
       cheerio = require('cheerio'),
       fs = require('fs'),
-      tm = require('text-miner');
 
 // Use .env to set the URLs
 require('dotenv').load();
