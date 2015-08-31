@@ -1,2 +1,8 @@
 node_modules/
 .env
+
+paragraphs/
+contents.html
+output.json
+output.txt
+toc.html
