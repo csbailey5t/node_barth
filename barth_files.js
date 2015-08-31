@@ -1,6 +1,6 @@
 var request = require('request'),
       cheerio = require('cheerio'),
-      fs = require('fs'),
+      fs = require('fs');
 
 // Use .env to set the URLs
 require('dotenv').load();
@@ -31,7 +31,7 @@ request(url, function(err, response, body) {
         }
     });
 
-    var volumeLinks = volumeLinks.slice(0, -2);
+    volumeLinks = volumeLinks.slice(0, -2);
 
     // Loop over the volume links array and do stuff
     for (i = 0, len = volumeLinks.length; i < len; ++i){
